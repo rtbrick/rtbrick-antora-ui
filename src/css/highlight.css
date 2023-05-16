@@ -1,0 +1,72 @@
+.hljs-number {
+  color: var(--hl-color-number);
+}
+
+.hljs-string,
+.hljs-literal,
+.hljs-doctag {
+  color: var(--hl-color-string);
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: var(--hl-color-special);
+}
+
+.hljs-title,
+.hljs-section {
+  color: var(--hl-color-title);
+}
+
+.hljs-constant {
+  color: var(--hl-color-constant);
+}
+
+.hljs-keyword,
+.hljs-built_in,
+.hljs-type,
+.hljs-tag,
+.hljs-name,
+.hljs-subst {
+  color: var(--hl-color-keyword);
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: var(--hl-color-comment);
+  font-style: italic;
+}
+
+.hljs-meta,
+.hljs-attr,
+.hljs-attribute {
+  color: var(--hl-color-meta);
+}
+
+.hljs-operator {
+  color: var(--hl-color-operator);
+}
+
+.hljs-punctuation {
+  color: var(--hl-color-punctuation);
+}
+
+.hljs-comment {
+  color: var(--hl-color-comment);
+}
+
+.hljs-addition {
+  background: rgba(11, 213, 112, 0.15);
+}
+
+.hljs-deletion {
+  background: rgba(245, 80, 61, 0.15);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: var(--monospace-font-weight-bold);
+}

@@ -1,0 +1,7 @@
+@media screen and (min-width: 1024px) {
+  .body {
+    display: flex;
+    max-width: var(--body-max-width);
+    margin-inline: auto;
+  }
+}

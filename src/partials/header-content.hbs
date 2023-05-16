@@ -1,0 +1,41 @@
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://rtbrick.com/"><img height="36" alt="logo" src="{{{uiRootPath}}}/img/logo.png"></a>
+      <a class="navbar-item title" href="{{{relativize page.componentVersion.url}}}">{{page.componentVersion.title}}</a>
+
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://rtbrick.com/">Home</a>
+        {{#if (morethan site.components 3)}}
+        <div class="navbar-item has-dropdown is-hoverable">
+          <span class="navbar-link">Projects</span>
+          <div class="navbar-dropdown">
+            {{#each site.components}}
+                <a class="navbar-item" href="{{{relativize ./url}}}">{{{./title}}}</a>
+            {{/each}}
+          </div>
+        </div>
+        {{else}}
+        {{#each site.components}}
+            <a class="navbar-item" href="{{{relativize ./url}}}">{{{./title}}}</a>
+        {{/each}}
+        {{/if}}
+
+          <div class="navbar-item search hide-for-print">
+            <div id="search-field" class="field">
+              <input id="search-input" type="text" placeholder="Search the docs"{{#if page.home}} autofocus{{/if}}>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </nav>
+</header>

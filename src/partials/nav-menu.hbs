@@ -1,0 +1,13 @@
+{{#with page.navigation}}
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+      <span class="navbar-link">{{page.componentVersion.displayVersion}}</span>
+      <div class="navbar-dropdown navbar-menu">
+        {{#each page.component.versions}}
+          <a class="navbar-item {{#if (eq this.version @root.page.version)}} is-current{{/if}}" href="{{{relativize this.url}}}">{{this.displayVersion}}</a>
+        {{/each}}
+      </div>
+{{> nav-tree navigation=this}}
+  </nav>
+</div>
+{{/with}}
