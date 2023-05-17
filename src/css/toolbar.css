@@ -10,6 +10,7 @@
   position: sticky;
   top: var(--navbar-height);
   z-index: var(--z-index-toolbar);
+  margin-left: 26px;
 }
 
 .toolbar a {

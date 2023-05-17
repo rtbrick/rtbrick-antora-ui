@@ -28,6 +28,7 @@
   --color-rtbrick-pink: rgba(var(--rtbrick-pink));
   --rtbrick-blue: 79, 187, 204;
   --color-rtbrick-blue: rgba(var(--rtbrick-blue));
+  --color-rtbrick-font: var(--color-rtbrick-gray);
   /* code highlighitng colors */
   --hl-color-number: rgb(213, 42, 42);
   --hl-color-string: rgb(28, 125, 77);
@@ -58,7 +59,7 @@
   --scrollbar-thumb-color: var(--color-gray-10);
   --scrollbar_hover-thumb-color: var(--color-gray-30);
   /* navbar */
-  --navbar-background: var(--color-rtbrick-blue);
+  --navbar-background: var(--color-rtbrick-pink);
   --navbar-font-color: var(--color-white);
   --navbar_hover-background: var(--color-rtbrick-gray);
   --navbar-button-background: var(--color-white);
@@ -100,13 +101,13 @@
   --warning-color: rgba(var(--rtbrick-pink), 0.15);
   --warning-on-color: var(--color-black);
   /* doc */
-  --doc-font-color: var(--color-jet-50);
+  --doc-font-color: var(--color-rtbrick-font);
   --doc-font-size: inherit;
   --doc-font-size--desktop: calc(17 / var(--rem-base) * 1rem);
   --doc-line-height: 1.7;
   --doc-margin: 0 1rem;
   --doc-margin--desktop: var(--doc-margin);
-  --heading-font-color: rgba(0, 0, 0, 0.87);
+  --heading-font-color: rgba(var(--rtbrick-pink), 0.87);
   --heading-font-weight: 300;
   --top-heading-font-color: rgba(0, 0, 0, 0.54);
   --alt-heading-font-weight: var(--body-font-weight-bold);

@@ -11,10 +11,6 @@
   }
 }
 
-a + .breadcrumbs {
-  padding-left: 0.05rem;
-}
-
 .breadcrumbs ul {
   display: flex;
   flex-wrap: wrap;
@@ -35,4 +31,12 @@ a + .breadcrumbs {
 
 .breadcrumbs li:last-of-type::after {
   content: none;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: var(--link-font-color);
 }
