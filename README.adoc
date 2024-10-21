@@ -234,3 +234,12 @@ See link:LICENSE[] to find the full license text.
 == Authors
 
 Development of Antora is led and sponsored by {url-opendevise}[OpenDevise Inc].
+
+== Open Source Tools (src/vendor/)
+=== ViewerJS
+
+ViewerJS can be used to view presentations, spreadsheets, PDF's and other documents on site.
+
+* Site: https://viewerjs.org
+* Version: viewerjs-0.5.8
+* License: AGPL-3.0
