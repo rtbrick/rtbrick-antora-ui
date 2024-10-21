@@ -13,6 +13,18 @@ Execute `gulp preview`.
 
 If you don't have Gulp installed, but you do have npm, you can run `npm install` to download all dependencies and then use `npx gulp ...`.
 
+== Open Source Tools used by RtBrick Antora UI
+
+Open source tools are kept under `src/vendor/`.
+Antora Default UI does not have the folder. So, `vfs.src('vendor/**/*', opts)` was added in `build.js`.
+
+=== ViewerJS
+
+ViewerJS can be used to view presentations, spreadsheets, PDF's and other documents on site.
+
+* Site: https://viewerjs.org
+* Version: viewerjs-0.5.8
+* License: AGPL-3.0
 ---
 
 = Antora Default UI
