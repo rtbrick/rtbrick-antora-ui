@@ -3,8 +3,8 @@
     const path = document.location.pathname.replace(/[^/]*$/, '')
     const pageUrl = '{{ @root.page.url }}'
     const pagePath = pageUrl.replace(/[^\/]*$/, '')
-    const relPath = pagePath.replace(/[^\/]*\//g, '../')
-    const src = `${relPath}/_/vendor/ViewerJS/#${path}/_attachments/${file}`
+    const relPath = pagePath.replace(/[^\/]+\//g, '../')
+    const src = `.${relPath}/_/vendor/ViewerJS/#${path}/_attachments/${file}`
     document.getElementById(id).src = src
   }
 </script>
