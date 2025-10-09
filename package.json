@@ -15,8 +15,7 @@
   ],
   "devDependencies": {
     "@asciidoctor/core": "~2.2",
-    "@fontsource/roboto": "~4.5",
-    "@fontsource/roboto-mono": "~4.5",
+    "@fontsource/jetbrains-mono": "~5.2",
     "@fontsource/red-hat-text": "~4.5",
     "@fontsource/ubuntu-mono": "~4.5",
     "autoprefixer": "~9.7",
