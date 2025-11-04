@@ -27,7 +27,7 @@ ViewerJS can be used to view presentations, spreadsheets, PDF's and other docume
 * License: AGPL-3.0
 ---
 
-= Antora Default UI
+== Antora Default UI
 // Settings:
 :experimental:
 :hide-uri-scheme:

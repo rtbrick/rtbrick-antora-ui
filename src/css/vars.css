@@ -22,6 +22,8 @@
   --color-rtbrick-green: rgba(var(--rtbrick-green));
   --rtbrick-yellow: 238, 183, 96;
   --color-rtbrick-yellow: rgba(var(--rtbrick-yellow));
+  --rtbrick-sky-blue: 230, 241, 255;
+  --color-rtbrick-sky-blue: rgba(var(--rtbrick-sky-blue));
   --rtbrick-gray: 58, 75, 76;
   --color-rtbrick-gray: rgba(var(--rtbrick-gray));
   --rtbrick-pink: 213, 42, 104;
@@ -49,7 +51,7 @@
   --body-font-color: var(--color-jet-70);
   --body-font-family: "Open Sans", sans-serif;
   --body-font-weight-bold: bold;
-  --monospace-font-family: "Robot Mono", monospace;
+  --monospace-font-family: "JetBrains Mono", monospace;
   --monospace-font-weight-bold: bold;
   /* base */
   --body-background: var(--color-white);
@@ -85,8 +87,8 @@
   --page-version-menu-background: var(--color-smoke-70);
   --page-version-missing-font-color: var(--color-gray-40);
   /* admonitions */
-  --caution-border-color: rgb(var(--rtbrick-yellow));
-  --caution-color: rgba(var(--rtbrick-yellow), 0.15);
+  --caution-border-color: rgb(var(--rtbrick-sky-blue));
+  --caution-color: rgba(var(--rtbrick-sky-blue), 0.15);
   --caution-on-color: var(--color-black);
   --important-border-color: rgb(var(--rtbrick-pink));
   --important-color: rgba(var(--rtbrick-pink), 0.15);
@@ -122,20 +124,21 @@
   --admonition-label-font-weight: var(--body-font-weight-bold);
   --caption-font-color: var(--color-gray-70);
   --caption-font-weight: var(--body-font-weight-bold);
-  --code-background: var(--color-smoke-30);
+  --code-background: var(--color-rtbrick-sky-blue);
+  --table-code-background: var(--color-smoke-30);
   --code-font-color: var(--body-font-color);
   --example-background: var(--color-white);
   --example-border-color: var(--color-gray-40);
   --kbd-background: var(--panel-background);
   --kbd-border-color: var(--color-gray-10);
-  --pre-background: var(--color-smoke-30);
+  --pre-background: var(--color-rtbrick-sky-blue);
   --pre-border-color: var(--panel-border-color);
   --pre-annotation-font-color: var(--color-gray-50);
   --quote-background: var(--panel-background);
   --quote-border-color: var(--color-gray-70);
   --quote-font-color: var(--color-gray-70);
   --quote-attribution-font-color: var(--color-gray-40);
-  --sidebar-background: var(--color-smoke-90);
+  --sidebar-background: var(--color-rtbrick-sky-blue);
   --table-border-color: var(--panel-border-color);
   --table-stripe-background: var(--panel-background);
   --table-footer-background: linear-gradient(to bottom, var(--color-smoke-70) 0%, var(--color-white) 100%);
