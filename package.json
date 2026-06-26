@@ -15,10 +15,9 @@
   ],
   "devDependencies": {
     "@asciidoctor/core": "~2.2",
-    "@asciidoctor/tabs": "^1.0.0-beta.6",
-    "@fontsource/jetbrains-mono": "~5.2",
-    "@fontsource/red-hat-text": "~4.5",
-    "@fontsource/ubuntu-mono": "~4.5",
+    "@fontsource/roboto": "~4.5",
+    "@fontsource/roboto-mono": "~4.5",
+    "@vscode/gulp-vinyl-zip": "~2.5",
     "autoprefixer": "~9.7",
     "browser-pack-flat": "~3.4",
     "browserify": "~16.5",
@@ -39,9 +38,8 @@
     "gulp-postcss": "~8.0",
     "gulp-stylelint": "~13.0",
     "gulp-uglify": "~3.0",
-    "gulp-vinyl-zip": "~2.2",
     "handlebars": "~4.7",
-    "highlight.js": "10.7.3",
+    "highlight.js": "9.18.3",
     "js-yaml": "~3.13",
     "merge-stream": "~2.0",
     "postcss-calc": "~7.0",
@@ -53,7 +51,6 @@
     "require-from-string": "~2.0",
     "stylelint": "~13.3",
     "stylelint-config-standard": "~20.0",
-    "vinyl-buffer": "~1.0",
     "vinyl-fs": "~3.0"
   }
 }

@@ -18,15 +18,6 @@ If you don't have Gulp installed, but you do have npm, you can run `npm install`
 Open source tools are kept under `src/vendor/`.
 Antora Default UI does not have the folder. So, `vfs.src('vendor/**/*', opts)` was added in `build.js`.
 
-=== ViewerJS
-
-ViewerJS can be used to view presentations, spreadsheets, PDF's and other documents on site.
-
-* Site: https://viewerjs.org
-* Version: viewerjs-0.5.8
-* License: AGPL-3.0
----
-
 == Antora Default UI
 // Settings:
 :experimental:
@@ -147,7 +138,7 @@ If you prefer to install global packages using Yarn, run this command instead:
 
 Alternately, you can use the `gulp` command that is installed by the project's dependencies.
 
- $ $(npm bin)/gulp --version
+ $ npx --offline gulp --version
 
 Now that you have the prerequisites installed, you can fetch and build the UI project.
 

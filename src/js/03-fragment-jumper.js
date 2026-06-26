@@ -2,8 +2,9 @@
   'use strict'
 
   var article = document.querySelector('article.doc')
+  if (!article) return
   var toolbar = document.querySelector('.toolbar')
-  var header = document.querySelector('.header')
+  var supportsScrollToOptions = 'scrollTo' in document.documentElement
 
   function decodeFragment (hash) {
     return hash && (~hash.indexOf('%') ? decodeURIComponent(hash) : hash).slice(1)
@@ -19,18 +20,16 @@
       window.location.hash = '#' + this.id
       e.preventDefault()
     }
-
-    var offset = 0
-    offset += (toolbar ? toolbar.getBoundingClientRect().bottom : 0)
-    offset += (header ? header.getBoundingClientRect().bottom : 0)
-    window.scrollTo(0, computePosition(this, 0) - offset)
+    var y = computePosition(this, 0) - toolbar.getBoundingClientRect().bottom
+    var instant = e === false && supportsScrollToOptions
+    instant ? window.scrollTo({ left: 0, top: y, behavior: 'instant' }) : window.scrollTo(0, y)
   }
 
   window.addEventListener('load', function jumpOnLoad (e) {
     var fragment, target
     if ((fragment = decodeFragment(window.location.hash)) && (target = document.getElementById(fragment))) {
-      jumpToAnchor.bind(target)()
-      setTimeout(jumpToAnchor.bind(target), 0)
+      jumpToAnchor.call(target, false)
+      setTimeout(jumpToAnchor.bind(target, false), 250)
     }
     window.removeEventListener('load', jumpOnLoad)
   })

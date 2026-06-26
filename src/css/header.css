@@ -1,25 +1,22 @@
-html.is-clipped--navbar {
-  overflow-y: hidden;
+@media screen and (max-width: 1023.5px) {
+  html.is-clipped--navbar {
+    overflow-y: hidden;
+  }
 }
 
 body {
   padding-top: var(--navbar-height);
 }
 
-.header {
+.navbar {
   background: var(--navbar-background);
+  color: var(--navbar-font-color);
+  font-size: calc(16 / var(--rem-base) * 1rem);
   height: var(--navbar-height);
   position: fixed;
   top: 0;
   width: 100%;
   z-index: var(--z-index-navbar);
-  box-shadow: rgb(0, 0, 0, 0.1) 0 0 0.2rem, rgb(0, 0, 0, 0.2) 0 0.2rem 0.4rem;
-}
-
-.navbar {
-  color: var(--navbar-font-color);
-  font-size: calc(14 / var(--rem-base) * 1rem);
-  height: 100%;
 }
 
 .navbar a {
@@ -29,21 +26,27 @@ body {
 .navbar-brand {
   display: flex;
   flex: auto;
+  padding-left: 1rem;
 }
 
-.navbar-brand .title {
-  font-size: calc(16 / var(--rem-base) * 1rem);
-  font-weight: var(--body-font-weight-bold);
+.navbar-brand .navbar-item {
+  color: var(--navbar-font-color);
+}
+
+.navbar-brand .navbar-item:first-child {
+  align-self: center;
+  padding: 0;
+  font-size: calc(22 / var(--rem-base) * 1rem);
   flex-wrap: wrap;
   line-height: 1;
 }
 
-.navbar-brand .title a {
+.navbar-brand .navbar-item:first-child a {
   color: inherit;
   word-wrap: normal;
 }
 
-.navbar-brand .title :not(:last-child) {
+.navbar-brand .navbar-item:first-child :not(:last-child) {
   padding-right: 0.375rem;
 }
 
@@ -96,7 +99,7 @@ body {
 
 .navbar-burger span {
   background-color: var(--navbar-font-color);
-  height: 1px;
+  height: 1.5px;
   width: 1rem;
 }
 
@@ -109,7 +112,7 @@ body {
 }
 
 .navbar-burger.is-active span + span {
-  margin-top: -1px;
+  margin-top: -1.5px;
 }
 
 .navbar-burger.is-active span:nth-child(1) {
@@ -126,7 +129,7 @@ body {
 
 .navbar-item,
 .navbar-link {
-  color: var(--navbar-font-color);
+  color: var(--navbar-menu-font-color);
   display: block;
   line-height: var(--doc-line-height);
   padding: 0.5rem 1rem;
@@ -151,11 +154,9 @@ body {
 
 .navbar-link {
   padding-right: 2.5em;
-  cursor: pointer;
 }
 
 .navbar-dropdown .navbar-item {
-  color: var(--body-font-color);
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
@@ -197,6 +198,11 @@ body {
 }
 
 @media screen and (min-width: 769px) {
+  .navbar-brand .navbar-item.search {
+    padding-right: 0;
+    margin-right: 0.5rem;
+  }
+
   #search-input {
     width: 200px;
   }
@@ -221,11 +227,6 @@ body {
     padding: 0.5rem 0;
   }
 
-  .navbar-menu .navbar-item,
-  .navbar-menu .navbar-link {
-    color: var(--body-font-color);
-  }
-
   .navbar-menu:not(.is-active) {
     display: none;
   }
@@ -239,11 +240,6 @@ body {
 @media screen and (min-width: 1024px) {
   .navbar-burger {
     display: none;
-  }
-
-  .navbar {
-    max-width: var(--body-max-width);
-    margin-inline: auto;
   }
 
   .navbar,

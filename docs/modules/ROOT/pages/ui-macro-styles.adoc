@@ -1,4 +1,5 @@
 = UI Macro Styles
+:navtitle: UI Macros
 
 Asciidoctor supports xref:antora:asciidoc:ui-macros.adoc[three UI element representations] out of the box, which are made from corresponding inline UI macros.
 
@@ -26,7 +27,7 @@ btn:[Save]
 
 == Keybinding
 
-A xref:antora:asciidoc:ui-macros.adoc#keybinding[keybinding] can be a single key (`+kbd:[F11]+`) or a sequence of keys (`+kbd:[Ctrl+F]`).
+A xref:antora:asciidoc:ui-macros.adoc#keybinding[keybinding] can be a single key (`+kbd:[F11]+`) or a sequence of keys (`+kbd:[Ctrl+F]+`).
 Here's the HTML that's generated for these two forms.
 
 [source,html]

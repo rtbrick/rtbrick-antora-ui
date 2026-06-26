@@ -4,7 +4,12 @@ Author Name
 :idseparator: -
 :!example-caption:
 :!table-caption:
+//:page-role: -toc
 :page-pagination:
+:description: A "preview" site for the UI.
+
+[.lead]
+You are looking at the preview site for the Antora default UI.
 
 [.float-group]
 --
@@ -28,6 +33,7 @@ Nominavi luptatum eos, an vim hinc philosophia intellegebat.
 Lorem pertinacia `expetenda` et nec, [.underline]#wisi# illud [.line-through]#sonet# qui ea.
 H~2~0.
 E = mc^2^.
+*Alphabet* *алфавит* _алфавит_ *_алфавит_*.
 Eum an doctus <<liber-recusabo,maiestatis efficiantur>>.
 Eu mea inani iriure.footnote:[Quisque porta facilisis tortor, vitae bibendum velit fringilla vitae! Lorem ipsum dolor sit amet, consectetur adipiscing elit.]
 
@@ -94,6 +100,20 @@ vfs
 <.> The `tap` function is used to wiretap the data in the pipe.
 <.> Wrap each streaming file in a buffer so the files can be processed by uglify.
 Uglify can only work with buffers, not streams.
+
+Here's the same code with the `wrap` role added, which enables pre-wrap, if that's your speed.
+
+[.wrap,js]
+----
+vfs
+  .src('js/vendor/*.js', { cwd: 'src', cwdbase: true, read: false })
+  .pipe(tap((file) => {
+    file.contents = browserify(file.relative, { basedir: 'src', detectGlobals: false }).bundle()
+  }))
+  .pipe(buffer())
+  .pipe(uglify())
+  .pipe(gulp.dest('build'))
+----
 
 Execute these commands to validate and build your site:
 
@@ -200,6 +220,7 @@ sed::
 splendide sed
 
 mea::
+tad::
 agam graeci
 
 Let's look at that another way.
@@ -287,7 +308,8 @@ If you installed the CLI and the default site generator globally, you can upgrad
 
 Or you can install the metapackage to upgrade both packages at once.
 
- $ npm i -g antora
+[subs=+quotes]
+ $ npm i -g *antora*
 ====
 
 Nominavi luptatum eos, an vim hinc philosophia intellegebat.
@@ -296,6 +318,9 @@ Eu mea inani iriure.
 [discrete]
 == Voluptua singulis
 
+[discrete]
+=== Nominavi luptatum
+
 Cum dicat putant ne.
 Est in reque homero principes, meis deleniti mediocrem ad has.
 Ex nam suas nemore dignissim, vel apeirian democritum et.
@@ -303,10 +328,16 @@ Ex nam suas nemore dignissim, vel apeirian democritum et.
 .Antora is a multi-repo documentation site generator
 image::multirepo-ssg.svg[Multirepo SSG,3000,opts=interactive]
 
+.Let's see that again, but a little smaller
+image::multirepo-ssg.svg[Multirepo SSG,300,role=text-left]
+
 Make the switch today!
 
 .Full Circle with Jake Blauvelt
 video::300817511[vimeo,640,360,align=left]
+
+.Naturally with Jake Blauvelt
+video::fUvDykQUgMk[youtube,640,360,align=center]
 
 [#english+中文]
 == English + 中文
