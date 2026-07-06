@@ -1,1 +1,124 @@
     {{!-- Add additional meta tags here --}}
+
+{{!-- Typesense search --}}
+{{#unless env.SITE_SEARCH_PROVIDER}}
+{{#if page.component}}
+    <meta name="docsearch:component_tag" content="{{page.component.title}}">
+{{/if}}
+{{#if page.version}}
+    <meta name="docsearch:version_tag" content="{{page.version}}">
+{{/if}}
+{{/unless}}
+
+    {{!-- Apply the saved theme before first paint to avoid a flash. Default: dark. --}}
+    <script>
+      (function () {
+        try {
+          const t = localStorage.getItem('rtb-theme') || 'dark';
+          if (t === 'auto') {
+            const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', preferred);
+            document.documentElement.setAttribute('rtb-theme', 'auto');
+          } else {
+            document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+            document.documentElement.setAttribute('rtb-theme', t === 'light' ? 'light' : 'dark');
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.setAttribute('rtb-theme', 'dark');
+        }
+      })();
+    </script>
+
+    {{!-- Inject the light/dark/auto toggle into the navbar and wire it up. --}}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var SUN = '<svg class="rtb-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+        var MOON = '<svg class="rtb-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+        var AUTO = '<svg class="rtb-icon-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 3v18A9 9 0 0 0 12 3z" fill="currentColor"/></svg>';
+
+        var container = document.createElement('div');
+        container.className = "rtb-theme-toggle-container";
+
+        var btn = document.createElement('button');
+        container.appendChild(btn);
+        btn.type = 'button';
+        btn.className = 'rtb-theme-toggle';
+        btn.setAttribute('aria-label', 'Set light / dark / auto theme');
+        btn.innerHTML = SUN + MOON + AUTO;
+
+        var menu = document.createElement('div');
+        menu.className = 'theme-dropdown-menu';
+        menu.innerHTML =
+          '<button class="theme-option" rtb-theme="light">' + SUN + ' <span>Light</span></button>' +
+          '<button class="theme-option" rtb-theme="dark">' + MOON + ' <span>Dark</span></button>' +
+          '<button class="theme-option" rtb-theme="auto">' + AUTO + ' <span>Auto</span></button>';
+        container.appendChild(menu);
+
+        // Toggle dropdown visibility on click
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          menu.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function () {
+          menu.classList.remove('show');
+        });
+
+        menu.querySelectorAll('.theme-option').forEach(function (opt) {
+          opt.addEventListener('click', function () {
+            applyTheme(this.getAttribute('rtb-theme'));
+          });
+        });
+
+        function applyTheme(theme) {
+          document.documentElement.setAttribute('rtb-theme', theme);
+          try { localStorage.setItem('rtb-theme', theme); } catch (e) { }
+
+          let dataTheme = theme;
+          if (theme === 'auto') {
+            dataTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', dataTheme);
+        }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          try {
+            var saved = localStorage.getItem('rtb-theme') || 'auto';
+            if (saved === 'auto') {
+              applyTheme('auto');
+            }
+          } catch (e) { }
+        });
+
+        var mediaQuery = window.matchMedia('(min-width: 1024px)');
+        var navbarEnd = document.querySelector('.navbar-end');
+        var navbarDivider = navbarEnd && navbarEnd.querySelector('.navbar-divider');
+        function handleLayoutChange(e) {
+          if (navbarDivider && mediaQuery.matches) {
+            navbarEnd.insertBefore(container, navbarDivider);
+          } else {
+            var brand = document.querySelector('.navbar-brand');
+            var burger = brand && brand.querySelector('.navbar-burger');
+            if (brand && burger) {
+              brand.insertBefore(container, burger);
+            } else if (brand) {
+              brand.appendChild(container);
+            } else {
+              container.style.position = 'fixed';
+              container.style.top = '0.75rem';
+              container.style.right = '1rem';
+              container.style.zIndex = '999';
+              document.body.appendChild(container);
+            }
+          }
+        }
+        handleLayoutChange(mediaQuery);
+        if (mediaQuery.addEventListener) {
+          mediaQuery.addEventListener('change', handleLayoutChange);
+        } else {
+          mediaQuery.addListener(handleLayoutChange);
+        }
+      });
+    </script>

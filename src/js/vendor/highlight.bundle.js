@@ -37,6 +37,8 @@
   hljs.registerLanguage('swift', require('highlight.js/lib/languages/swift'))
   hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'))
   hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'))
+  // Register plain text for cli to avoid "fallback to no-highlight mode" warning.
+  hljs.registerLanguage('cli', require('highlight.js/lib/languages/plaintext'))
   ;[].slice.call(document.querySelectorAll('pre code.hljs[data-lang]')).forEach(function (node) {
     hljs.highlightBlock(node)
   })

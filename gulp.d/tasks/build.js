@@ -96,6 +96,9 @@ module.exports = (src, dest, preview) => () => {
           ].reduce((accum, it) => (it ? accum.concat(it) : accum), [])
         )
     ),
+    vfs.src('css/site-rtbrick.css', opts),
+    vfs.src('css/vendor/**/*', opts),
+    vfs.src('vendor/**/*', opts),
     vfs.src('helpers/*.js', opts),
     vfs.src('layouts/*.hbs', opts),
     vfs.src('partials/*.hbs', opts),

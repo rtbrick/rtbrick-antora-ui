@@ -1,0 +1,742 @@
+/* ==========================================================================
+   RtBrick theme for Antora
+   --------------------------------------------------------------------------
+   Layered on top of Antora's default UI bundle. All brand values are defined
+   as CSS variables in :root below — adjust those to retune the look. The
+   rules further down map the default UI's elements onto those variables.
+
+   Brand tokens taken from the website (tailwind.config / globals.css):
+     dark bg ........ #010619 / #080b14
+     raised surface . #1c232e
+     light text ..... #d9e0fb
+     muted text ..... #48547a
+     accent (blue) .. #0080ff
+     borders ........ #1c232e / #29304d
+   Fonts: Work Sans (body/headings), Geist Mono (code).
+
+   THEMES: the palette is defined as variables per theme. Dark is the default
+   (:root); light is applied when <html data-theme="light"> is set by the
+   navbar toggle. To retune either theme, edit only the variable blocks below.
+   ========================================================================== */
+
+:root {
+  /* ---- Fonts & shape (shared by both themes) ---- */
+  --rtb-font-sans: "Work Sans", -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
+  --rtb-font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", menlo, consolas, monospace;
+  --rtb-radius: 10px;
+
+  /* Override the default UI's own variables where it exposes them */
+  --body-font-family: var(--rtb-font-sans);
+  --doc-font-family: var(--rtb-font-sans);
+  --monospace-font-family: var(--rtb-font-mono);
+
+  /* ---- DARK palette (default — edit me) ---- */
+  --rtb-bg: #010619;
+  --rtb-bg-2: #080b14;
+  --rtb-surface: #11192b;
+  --rtb-raised: #1c232e;
+  --rtb-border: #29304d;
+  --rtb-text: #d9e0fb;
+  --rtb-text-strong: #fff;
+  --rtb-muted: #8a93b8;
+  --rtb-muted-2: #48547a;
+  --rtb-accent: #0080ff;
+  --rtb-accent-hover: #4da6ff;
+  --rtb-accent-soft: rgba(0, 128, 255, 0.14);
+
+  /* Syntax-highlight tokens (tuned for the dark code background) */
+  --rtb-code-comment: var(--rtb-muted);
+  --rtb-code-keyword: #7aa2ff;
+  --rtb-code-string: #5fd1a0;
+  --rtb-code-number: #e0b341;
+  --rtb-code-title: #ff8a9a;
+}
+
+/* ---- LIGHT palette (edit me) ---- */
+html[data-theme="light"] {
+  --rtb-bg: #fff;
+  --rtb-bg-2: #f5f7fb;
+  --rtb-surface: #f0f3fa;
+  --rtb-raised: #e7ecf7;
+  --rtb-border: #dce1f0;
+  --rtb-text: #3a4362;
+  --rtb-text-strong: #0b1020;
+  --rtb-muted: #6b7596;
+  --rtb-muted-2: #98a0bd;
+  --rtb-accent: #0080ff;
+  --rtb-accent-hover: #0062c4;
+  --rtb-accent-soft: rgba(0, 128, 255, 0.1);
+
+  /* Syntax-highlight tokens (tuned for the light code background) */
+  --rtb-code-comment: #8a93b8;
+  --rtb-code-keyword: #0050c0;
+  --rtb-code-string: #0a7d52;
+  --rtb-code-number: #9a6b00;
+  --rtb-code-title: #c0392b;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--rtb-bg);
+  color: var(--rtb-text);
+  font-family: var(--rtb-font-sans);
+}
+
+.body {
+  background-color: var(--rtb-bg);
+}
+
+a {
+  color: var(--rtb-accent);
+}
+
+a:hover {
+  color: var(--rtb-accent-hover);
+}
+
+/* ---------- Top navbar / header ---------- */
+.navbar {
+  background-color: var(--rtb-bg-2);
+  border-bottom: 1px solid var(--rtb-border);
+  color: var(--rtb-text);
+}
+
+.navbar-brand .navbar-item,
+.navbar-item,
+.navbar-link {
+  color: var(--rtb-text) !important;
+}
+
+.navbar-item:hover,
+.navbar-link:hover,
+a.navbar-item:hover {
+  background-color: transparent !important;
+  color: var(--rtb-accent) !important;
+}
+
+.navbar-brand .navbar-item.has-text-weight-bold,
+.navbar-brand .navbar-item b {
+  color: var(--rtb-text-strong) !important;
+}
+
+/* Brand logo. The asset is the light (lavender) logo, so it sits natural on
+   the dark theme and is inverted to dark on the light theme — mirrors the
+   website's `invert dark:invert-0`. */
+.navbar-brand .rtb-brand:hover {
+  background-color: transparent !important;
+}
+
+.navbar-burger {
+  margin-left: inherit;
+}
+
+.rtb-logo {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+html[data-theme="light"] .rtb-logo {
+  filter: invert(1);
+}
+
+/* ---------- Left navigation (page tree) ---------- */
+.nav-container,
+.nav {
+  background-color: var(--rtb-bg-2);
+}
+
+.nav {
+  border-right: 1px solid var(--rtb-border);
+}
+
+.nav-panel-menu,
+.nav-menu {
+  color: var(--rtb-text);
+}
+
+.nav-menu h3.title {
+  color: var(--rtb-muted);
+}
+
+.nav-link,
+.nav-text {
+  color: var(--rtb-text);
+}
+
+.nav-link:hover {
+  color: var(--rtb-accent);
+}
+
+.nav-item.is-current-page > .nav-link,
+.nav-item.is-current-page > .nav-text {
+  color: var(--rtb-accent);
+  font-weight: 600;
+}
+
+.nav-item.is-current-page > .nav-link::before,
+.nav-item.is-current-page > .nav-text::before {
+  border-left: 2px solid var(--rtb-accent);
+}
+
+.nav-item-toggle {
+  color: var(--rtb-muted);
+}
+
+/* ---------- Component / version explore panel (bottom-left) ----------
+   Hidden: this site has a single component and no versions, so the selector
+   serves no purpose and its open-state animation renders poorly. Remove this
+   one rule (display:none) to bring it back if you add components/versions. */
+.nav-panel-explore {
+  display: none;
+  background-color: var(--rtb-bg-2);
+}
+
+.nav-panel-explore .context {
+  color: var(--rtb-muted);
+  box-shadow: 0 -1px 0 var(--rtb-border);
+}
+
+.nav-panel-explore .components {
+  background-color: var(--rtb-surface);
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.25);
+}
+
+.nav-panel-explore .component .title a {
+  color: var(--rtb-text);
+}
+
+.nav-panel-explore .component .version a {
+  background-color: var(--rtb-raised);
+  color: var(--rtb-text);
+}
+
+.nav-panel-explore .component .is-current a {
+  background-color: var(--rtb-accent);
+  color: #fff;
+}
+
+/* The chevron.svg is dark (#5d5d5d); lighten it on the dark theme. */
+html[data-theme="dark"] .nav-panel-explore .context .version::after,
+html[data-theme="dark"] .page-versions .version-menu-toggle {
+  filter: brightness(1.7);
+}
+
+html[data-theme="dark"] .nav-toggle,
+html[data-theme="dark"] .nav-menu-toggle {
+  filter: invert(1);
+}
+
+/* ---------- Toolbar (breadcrumbs / edit links) ---------- */
+.toolbar {
+  background-color: var(--rtb-bg-2);
+  border-bottom: 1px solid var(--rtb-border);
+  color: var(--rtb-muted);
+  box-shadow: none;
+}
+
+.toolbar a {
+  color: var(--rtb-muted);
+}
+
+.toolbar a:hover {
+  color: var(--rtb-accent);
+}
+
+.breadcrumbs li::after {
+  color: var(--rtb-muted-2);
+}
+
+.page-versions .version-menu-toggle {
+  color: var(--rtb-text);
+}
+
+/* The home icon (home.svg / home-o.svg) is a dark SVG; invert it on the dark
+   theme so it doesn't blend into the background. */
+html[data-theme="dark"] .toolbar .home-link {
+  filter: invert(1);
+}
+
+/* ---------- Main content ---------- */
+.doc {
+  color: var(--rtb-text);
+}
+
+.doc h1,
+.doc h2,
+.doc h3,
+.doc h4,
+.doc h5,
+.doc h6 {
+  color: var(--rtb-text-strong);
+  font-family: var(--rtb-font-sans);
+  font-weight: 600;
+}
+
+.doc h1.page {
+  font-weight: 700;
+}
+
+.doc h2 {
+  border-bottom: 1px solid var(--rtb-border);
+  padding-bottom: 0.3em;
+}
+
+.doc a {
+  color: var(--rtb-accent);
+}
+
+.doc a:hover {
+  color: var(--rtb-accent-hover);
+}
+
+.doc strong,
+.doc b {
+  color: var(--rtb-text-strong);
+}
+
+.doc table.tableblock,
+.doc table.tableblock th,
+.doc table.tableblock td {
+  border-color: var(--rtb-border);
+  color: var(--rtb-text);
+}
+
+.doc table.tableblock thead th {
+  background-color: var(--rtb-raised);
+  color: var(--rtb-text-strong);
+}
+
+.doc table.tableblock tr:nth-child(even) td {
+  background-color: var(--rtb-surface);
+}
+
+.doc table.stripes-hover > tbody > tr:hover {
+  background: var(--rtb-bg-2);
+}
+
+.doc table.stripes-odd > tbody > tr:nth-of-type(odd) {
+  background: var(--rtb-bg);
+}
+
+.doc table.sticky-table th {
+  background: whitesmoke;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 5.9rem;
+  z-index: 1;
+}
+
+/* ---------- Inline + block code ---------- */
+.doc code,
+.doc p code,
+.doc li code {
+  background-color: var(--rtb-raised);
+  color: var(--rtb-text);
+  font-family: var(--rtb-font-mono);
+  border-radius: 4px;
+}
+
+.doc pre {
+  font-family: var(--rtb-font-mono);
+}
+
+/* The bundle puts the light background on the inner <code> for highlighted
+   blocks and on the <pre> for plain ones — override both, plus the shadow. */
+.doc .listingblock pre:not(.highlight),
+.doc .literalblock pre,
+.doc pre.highlight > code,
+.doc pre.highlight {
+  background: var(--rtb-bg-2) !important;
+  box-shadow: inset 0 0 0 1px var(--rtb-border) !important;
+  color: var(--rtb-text);
+  border-radius: var(--rtb-radius);
+}
+
+.doc .listingblock .title {
+  color: var(--rtb-muted);
+}
+
+/* Theme-aware syntax-highlight palette (remaps the bundle's hljs tokens). */
+.doc .hljs-comment,
+.doc .hljs-quote {
+  color: var(--rtb-code-comment);
+  font-style: italic;
+}
+
+.doc .hljs-keyword,
+.doc .hljs-selector-tag,
+.doc .hljs-built_in,
+.doc .hljs-name,
+.doc .hljs-tag {
+  color: var(--rtb-code-keyword);
+  font-weight: 600;
+}
+
+.doc .hljs-string,
+.doc .hljs-title,
+.doc .hljs-section,
+.doc .hljs-attribute,
+.doc .hljs-literal,
+.doc .hljs-template-tag,
+.doc .hljs-template-variable,
+.doc .hljs-type,
+.doc .hljs-addition {
+  color: var(--rtb-code-string);
+}
+
+.doc .hljs-number,
+.doc .hljs-symbol,
+.doc .hljs-bullet,
+.doc .hljs-attr,
+.doc .hljs-variable,
+.doc .hljs-meta {
+  color: var(--rtb-code-number);
+}
+
+.doc .hljs-subst {
+  color: var(--rtb-text);
+}
+
+.doc .hljs-function .hljs-title,
+.doc .hljs-doctag,
+.doc .hljs-deletion {
+  color: var(--rtb-code-title);
+}
+
+/* ---------- Admonitions ----------
+   The bundle gives the content cell a light (#fafafa) background and the icon
+   cell colored badges (i.icon-note etc.). We keep the badges and only darken
+   the content surface so text stays readable on the dark canvas. */
+.doc .admonitionblock > table {
+  border-radius: var(--rtb-radius);
+  /* No overflow:hidden here — the icon badge sits above the top edge and
+     would get clipped. The content cell carries its own border-radius. */
+}
+
+.doc .admonitionblock td.content {
+  background-color: var(--rtb-surface);
+  color: var(--rtb-text);
+  border: 1px solid var(--rtb-border);
+  border-radius: var(--rtb-radius);
+}
+
+.doc .admonitionblock td.content code {
+  background-color: var(--rtb-raised);
+}
+
+.doc .admonitionblock .title {
+  color: var(--rtb-muted);
+}
+
+/* ---------- Example ---------- */
+.doc .exampleblock > .content {
+  background-color: var(--rtb-bg-2);
+}
+
+/* ---------- Quotes ---------- */
+.doc .quoteblock,
+.doc .verseblock {
+  background-color: var(--rtb-surface);
+  border-left: 3px solid var(--rtb-accent);
+  color: var(--rtb-text);
+  border-radius: 0 var(--rtb-radius) var(--rtb-radius) 0;
+}
+
+.doc blockquote {
+  background: transparent;
+  color: var(--rtb-text);
+}
+
+.doc .quoteblock .attribution {
+  color: var(--rtb-muted);
+}
+
+/* ---------- Right-hand TOC ---------- */
+.toc .toc-menu h3 {
+  color: var(--rtb-muted);
+}
+
+.toc .toc-menu a {
+  color: var(--rtb-muted);
+}
+
+.toc .toc-menu a:hover {
+  color: var(--rtb-accent);
+}
+
+.toc .toc-menu li.is-active a,
+.toc .toc-menu a.is-active {
+  color: var(--rtb-accent);
+  border-left: 2px solid var(--rtb-accent);
+}
+
+/* ---------- Pagination ---------- */
+.pagination a {
+  color: var(--rtb-accent);
+  border: 1px solid var(--rtb-border);
+  border-radius: var(--rtb-radius);
+  background-color: var(--rtb-surface);
+}
+
+.pagination a:hover {
+  background-color: var(--rtb-accent-soft);
+  border-color: var(--rtb-accent);
+}
+
+/* ---------- Footer ---------- */
+footer.footer {
+  background-color: var(--rtb-bg-2);
+  border-top: 1px solid var(--rtb-border);
+  color: var(--rtb-muted);
+}
+
+footer.footer a {
+  color: var(--rtb-accent);
+}
+
+/* ---------- Scrollbar (webkit) ---------- */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--rtb-bg-2);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--rtb-raised);
+  border-radius: 6px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--rtb-muted-2);
+}
+
+/* ---------- Primary (CTA) button — brand it in both themes ---------- */
+.navbar .button.is-primary,
+.doc .button.is-primary {
+  background-color: var(--rtb-accent);
+  border-color: var(--rtb-accent);
+  color: #fff;
+}
+
+.navbar .button.is-primary:hover,
+.doc .button.is-primary:hover {
+  background-color: var(--rtb-accent-hover);
+  border-color: var(--rtb-accent-hover);
+}
+
+/* ---------- Theme toggle button (injected into .navbar-end) ---------- */
+.rtb-theme-toggle-container {
+  display: inline-flex;
+  position: relative;
+  margin-left: auto;
+}
+
+.rtb-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: auto 0.5rem;
+  padding: 0;
+  border: 1px solid var(--rtb-border);
+  border-radius: var(--rtb-radius);
+  background-color: var(--rtb-surface);
+  color: var(--rtb-text);
+  cursor: pointer;
+  line-height: 1;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.rtb-theme-toggle:hover {
+  border-color: var(--rtb-accent);
+  color: var(--rtb-accent);
+  background-color: var(--rtb-accent-soft);
+}
+
+.rtb-theme-toggle svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: block;
+}
+
+/* Show the moon in dark mode, the sun in light mode */
+.rtb-theme-toggle .rtb-icon-sun,
+.rtb-theme-toggle .rtb-icon-moon,
+.rtb-theme-toggle .rtb-icon-auto {
+  display: none;
+}
+
+html[rtb-theme="light"] .rtb-theme-toggle .rtb-icon-sun,
+html[rtb-theme="dark"] .rtb-theme-toggle .rtb-icon-moon,
+html[rtb-theme="auto"] .rtb-theme-toggle .rtb-icon-auto {
+  display: block;
+}
+
+.theme-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--rtb-bg-2);
+  border: 1px solid var(--rtb-border);
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 120px;
+}
+
+.theme-dropdown-menu.show {
+  display: block;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--rtb-text);
+}
+
+.theme-option:hover {
+  background-color: var(--rtb-raised);
+}
+
+.theme-option svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+/* Smooth the cross-fade when switching themes */
+body,
+.navbar,
+.nav,
+.toolbar,
+footer.footer,
+.doc .admonitionblock td.content,
+.doc .quoteblock {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ==========================================================================
+   Elements the bundle hard-codes to light colors. Without these overrides
+   they look broken in dark mode (white panels) or light mode (white-on-white).
+   ========================================================================== */
+
+/* Navbar dropdown menus (Products / Services) — white panel breaks dark mode. */
+.navbar-dropdown {
+  background-color: var(--rtb-bg-2);
+  border: 1px solid var(--rtb-border);
+  border-top: none;
+}
+
+.navbar-dropdown a.navbar-item:hover {
+  background-color: var(--rtb-accent-soft) !important;
+  color: var(--rtb-accent) !important;
+}
+
+.navbar-dropdown .navbar-item small {
+  color: var(--rtb-muted);
+}
+
+.navbar-divider {
+  background-color: var(--rtb-border);
+}
+
+/* Mobile: the collapsed navbar menu panel + its item hover. */
+@media screen and (max-width: 1023.5px) {
+  .navbar-menu {
+    background-color: var(--rtb-bg-2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+  }
+
+  .navbar-menu a.navbar-item:hover {
+    background-color: var(--rtb-accent-soft) !important;
+  }
+}
+
+/* Hamburger icon — white bars are invisible on the light navbar. */
+.navbar-burger span {
+  background-color: var(--rtb-text);
+}
+
+/* Keyboard keys. */
+.doc kbd {
+  background-color: var(--rtb-raised);
+  border: 1px solid var(--rtb-border);
+  color: var(--rtb-text);
+  box-shadow: 0 1px 0 var(--rtb-border);
+}
+
+/* Sidebar block. */
+.doc .sidebarblock {
+  background-color: var(--rtb-surface);
+  color: var(--rtb-text);
+}
+
+/* Collapsible result block (details). */
+.doc details.result > .content {
+  background-color: var(--rtb-bg-2);
+  border-color: var(--rtb-border);
+  color: var(--rtb-text);
+}
+
+.doc details > summary {
+  color: var(--rtb-muted);
+}
+
+/* Discrete (sect0) heading band. */
+.doc h1.sect0 {
+  background-color: var(--rtb-surface);
+  color: var(--rtb-text-strong);
+}
+
+/* Table footer (bundle uses a light gradient). */
+.doc table.tableblock > tfoot {
+  background: var(--rtb-surface);
+  color: var(--rtb-text);
+}
+
+/* Abstract / preamble blockquote. */
+.doc .abstract blockquote {
+  background-color: var(--rtb-surface);
+  border-left-color: var(--rtb-border);
+  color: var(--rtb-text);
+}
+
+/* Page version menu popup. */
+.page-versions .version-menu {
+  background: var(--rtb-surface);
+  border: 1px solid var(--rtb-border);
+  border-radius: var(--rtb-radius);
+}
+
+.page-versions .version-menu .version {
+  color: var(--rtb-text);
+}
+
+.page-versions .version-menu .version.is-current {
+  color: var(--rtb-accent);
+}
+
+@media screen and (min-width: 1024px) {
+  .is-hidden-desktop {
+    display: none !important;
+  }
+}

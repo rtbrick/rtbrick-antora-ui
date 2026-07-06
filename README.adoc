@@ -18,6 +18,10 @@ If you don't have Gulp installed, but you do have npm, you can run `npm install`
 Open source tools are kept under `src/vendor/`.
 Antora Default UI does not have the folder. So, `vfs.src('vendor/**/*', opts)` was added in `build.js`.
 
+== Language Highlight
+
+For code blocks in training pages, `cli` is registered as `plaintext` in `src/js/vendor/highlight.bundle.js`.
+
 == Antora Default UI
 // Settings:
 :experimental:
