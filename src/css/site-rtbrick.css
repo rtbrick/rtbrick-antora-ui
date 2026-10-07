@@ -141,7 +141,7 @@ a.navbar-item:hover {
 }
 
 html[data-theme="light"] .rtb-logo {
-  filter: invert(1);
+  content: url("../img/rtbrick-logo-light.svg");
 }
 
 /* ---------- Left navigation (page tree) ---------- */
@@ -481,6 +481,7 @@ html[data-theme="dark"] .toolbar .home-link {
   border: 1px solid var(--rtb-border);
   border-radius: var(--rtb-radius);
   background-color: var(--rtb-surface);
+  padding-inline: 0.3em;
 }
 
 .pagination a:hover {
