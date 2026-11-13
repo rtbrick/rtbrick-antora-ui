@@ -118,6 +118,11 @@ a.navbar-item:hover {
   color: var(--rtb-accent) !important;
 }
 
+.navbar-item.is-active {
+  font-weight: 600;
+  color: var(--rtb-text-strong) !important;
+}
+
 .navbar-brand .navbar-item.has-text-weight-bold,
 .navbar-brand .navbar-item b {
   color: var(--rtb-text-strong) !important;
