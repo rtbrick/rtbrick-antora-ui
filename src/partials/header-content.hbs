@@ -22,13 +22,13 @@
           <span class="navbar-link">Projects</span>
           <div class="navbar-dropdown">
             {{#each (componentSorter site.components page.attributes.component-sort-order)}}
-            <a class="navbar-item" href="{{{relativize ./url}}}">{{{./title}}}</a>
+            <a class="navbar-item{{#if (eq ./name @root.page.component.name)}} is-active{{/if}}" href="{{{relativize ./url}}}">{{{./title}}}</a>
             {{/each}}
           </div>
         </div>
         {{else}}
         {{#each (componentSorter site.components page.attributes.component-sort-order)}}
-        <a class="navbar-item" href="{{{relativize ./url}}}">{{{./title}}}</a>
+        <a class="navbar-item{{#if (eq ./name @root.page.component.name)}} is-active{{/if}}" href="{{{relativize ./url}}}">{{{./title}}}</a>
         {{/each}}
         {{/if}}
         <div class="navbar-item"></div>
